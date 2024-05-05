@@ -1,6 +1,6 @@
-package com.daikoco.apigateway.config.security;
+package ir.kian.igap.apigateway.config.security;
 
-import com.daikoco.apigateway.exception.UserUnAuthorizeException;
+import ir.kian.igap.apigateway.exception.UserUnAuthorizeException;
 import com.nimbusds.jwt.JWTParser;
 import lombok.Getter;
 import lombok.Setter;

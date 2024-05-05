@@ -1,4 +1,4 @@
-package com.daikoco.apigateway.config.security;
+package ir.kian.igap.apigateway.config.security;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.daikoco.apigateway.config.security;
+package ir.kian.igap.apigateway.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

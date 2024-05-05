@@ -1,4 +1,4 @@
-package com.daikoco.apigateway.properties;
+package ir.kian.igap.apigateway.properties;
 
 import lombok.Getter;
 import lombok.Setter;

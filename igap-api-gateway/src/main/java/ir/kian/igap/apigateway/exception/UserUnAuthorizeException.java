@@ -1,4 +1,4 @@
-package com.daikoco.apigateway.exception;
+package ir.kian.igap.apigateway.exception;
 
 public class UserUnAuthorizeException extends RuntimeException {
     private final static String UserUnAuthorizeExceptionMessage = "User is Un Authorized!";

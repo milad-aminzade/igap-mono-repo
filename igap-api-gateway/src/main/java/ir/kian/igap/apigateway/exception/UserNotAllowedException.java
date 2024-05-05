@@ -1,4 +1,4 @@
-package com.daikoco.apigateway.exception;
+package ir.kian.igap.apigateway.exception;
 
 public class UserNotAllowedException extends RuntimeException  {
     private static final String MESSAGE = "user is not allowed!";
