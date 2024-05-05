@@ -43,4 +43,6 @@ public class Person extends BaseEntity<UUID> {
 
     @OneToOne
     private Mobile mobile;
+
+    private boolean isEnabled;
 }
