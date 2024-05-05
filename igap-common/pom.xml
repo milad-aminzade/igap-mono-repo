@@ -5,7 +5,7 @@
 
     <groupId>ir.kian.igap.common</groupId>
     <artifactId>igap-common</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
     <name>igap-common</name>
     <description>igap-common</description>
     <properties>
