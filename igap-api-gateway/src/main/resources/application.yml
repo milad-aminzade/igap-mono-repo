@@ -1,0 +1,61 @@
+server:
+  port: ${SERVER-PORT:9010}
+app:
+  config:
+    keycloak:
+      url: ${KEYCLOAK_URL:http://127.0.0.1:8089}
+      realm: ${KEYCLOAK_REALM:Igam-Realm}
+      user-name-attribute: ${KEYCLOAK_USERNAME_ATTR:preferred_username}
+      client-id: ${KEYCLOAK_CLIENT_ID:igap-client}
+      client-secret: ${KEYCLOAK_CLIENT_SECRET:9MFpcqB8XBCRARO3NBK6FbJfMRbBgSiN}
+      grant-type: password
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: IGAPUSERPROFILECHALLENGE
+          uri: lb://IGAPUSERPROFILECHALLENGE
+          predicates:
+            - Path=/profile/**
+          filters:
+            - StripPrefix=1
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            token-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/token
+            authorization-uri: ${app.config.keycloak.url}/unAuthorized
+            user-name-attribute: ${app.config.keycloak.user-name-attribute}
+            user-info-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/userinfo
+            jwk-set-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/certs
+            user-info-authentication-method: header
+        registration:
+          igap-clinet:
+            provider: keycloak
+            client-id: igap-client
+            redirect-uri: ${app.config.keycloak.url}/unAuthorized
+            authorization-grant-type: authorization_code
+            scope: openid
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}
+
+  profiles:
+    active:
+logging:
+  pattern:
+    level: '%5p [${spring.application.name}, %X{traceId:-}, %X{spanId:-}}]'
+  level:
+    org:
+      springframework: WARN
+      hibernate: WARN
+    ir: TRACE
+    com:
+      netflix: WARN
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka

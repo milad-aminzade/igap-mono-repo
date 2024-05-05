@@ -1,5 +1,6 @@
 package ir.kian.igap.IgapUserProfileChallenge.exception.handler;
 
+import ir.kian.igap.IgapUserProfileChallenge.exception.UserUnAuthorizeException;
 import ir.kian.igap.common.domain.dto.restapi.result.APIResultDto;
 import ir.kian.igap.common.domain.dto.restapi.result.APIResultDtoWithData;
 import ir.kian.igap.common.domain.dto.restapi.result.Context;
