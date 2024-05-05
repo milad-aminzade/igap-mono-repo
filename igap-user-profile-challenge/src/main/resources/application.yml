@@ -1,0 +1,56 @@
+server:
+  port: ${SERVER_PORT:8082}
+app:
+  config:
+    keycloak:
+      url: ${KEYCLOAK_URL:http://127.0.0.1:8089}
+      realm: ${KEYCLOAK_REALM:Igam-Realm}
+      user-name-attribute: ${KEYCLOAK_USERNAME_ATTR:preferred_username}
+      client-id: ${KEYCLOAK_CLIENT_ID:igap-client}
+      client-secret: ${KEYCLOAK_CLIENT_SECRET:9MFpcqB8XBCRARO3NBK6FbJfMRbBgSiN}
+      grant-type: password
+spring:
+  application:
+    name: IgapUserProfileChallenge
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 360000000
+            readTimeout: 360000000
+      circuitbreaker:
+        enabled: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/${DATABASE_DB:user_profile}?useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+    username: ${DATABASE_USERNAME:root}
+    password: ${DATABASE_PASSWORD:password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 500
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+        connection:
+          pool_size: 300
+    show-sql: true
+    generate-ddl: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka
+
+
+application:
+  feign:
+    classes:
+      host-name: localhost
+      client-properties:
+        KeycloakAdapter:
+          time-limit: 60
+          items:
+            - login(KeycloakLoginAdapterRequestDto)
