@@ -33,6 +33,7 @@ public class SecurityConfiguration {
         http.authorizeExchange()
                 .pathMatchers(HttpMethod.POST, "/profile/api/v1/auth/login").permitAll()
                 .pathMatchers(HttpMethod.POST, "/profile/api/v1/person").hasRole(USER_ROLE)
+                .pathMatchers(HttpMethod.GET, "/profile/api/v1/person").hasAnyRole(ADMIN_Role)
 //                .pathMatchers(HttpMethod.GET, "/actuator/prometheus","/actuator/health").permitAll()
                 .anyExchange().authenticated()
                 .and()
