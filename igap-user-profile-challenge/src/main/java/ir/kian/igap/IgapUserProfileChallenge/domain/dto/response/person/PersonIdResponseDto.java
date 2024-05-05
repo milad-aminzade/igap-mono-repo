@@ -10,6 +10,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class CreatePersonResponseDto extends ResponseDto {
+public class PersonIdResponseDto extends ResponseDto {
     private UUID id;
 }

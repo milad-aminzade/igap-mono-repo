@@ -1,12 +1,13 @@
 package ir.kian.igap.IgapUserProfileChallenge.transformer;
 
 import ir.kian.igap.IgapUserProfileChallenge.domain.dto.request.person.CreatePersonRequestDto;
-import ir.kian.igap.IgapUserProfileChallenge.domain.dto.response.person.CreatePersonResponseDto;
+import ir.kian.igap.IgapUserProfileChallenge.domain.dto.response.person.PersonIdResponseDto;
 import ir.kian.igap.IgapUserProfileChallenge.domain.dto.response.person.PersonResponseDto;
 import ir.kian.igap.IgapUserProfileChallenge.domain.entity.Address;
 import ir.kian.igap.IgapUserProfileChallenge.domain.entity.Person;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 public class PersonTransformer {
@@ -46,25 +47,19 @@ public class PersonTransformer {
                 .build();
     }
 
-    public static CreatePersonResponseDto toCreatePersonResponseDto(Person person) {
-        return CreatePersonResponseDto.builder()
+    public static PersonIdResponseDto toCreatePersonResponseDto(Person person) {
+        return PersonIdResponseDto.builder()
                 .id(person.getId())
+                .build();
+    }
+
+    public static PersonIdResponseDto personIdResponseDto(UUID uuid) {
+        return PersonIdResponseDto.builder()
+                .id(uuid)
                 .build();
     }
 
     private static String toAddress(Address address) {
         return String.format("%S - %S", address.getCity() != null ? address.getCity().getTitle() : null, address.getLocation());
     }
-
-//    public static PersonResponseDto toPersonResponseDto(Person person) {
-//        return PersonResponseDto.builder()
-//                .id(person.getId())
-//                .name(person.getName())
-//                .surname(person.getSurname())
-//                .father(person.getFather())
-//                .mobile(person.getMobile() != null ? person.getMobile().getMobileNo() : null)
-//                .address(person.getAddress() != null ? toAddress(person.getAddress()) : null)
-//                .email(person.getEmail())
-//                .build();
-//    }
 }
