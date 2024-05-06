@@ -30,21 +30,24 @@ spring:
       maximum-pool-size: 500
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
         dialect: org.hibernate.dialect.MySQLDialect
         connection:
           pool_size: 300
     show-sql: true
     generate-ddl: true
+  liquibase:
+    enabled: false
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8081/eureka
-
-
 application:
   feign:
     classes:
