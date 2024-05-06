@@ -32,4 +32,6 @@ public class PersonResponseDto extends ResponseDto {
     private String mobile;
 
     private String username;
+
+    private Boolean isEnabled;
 }

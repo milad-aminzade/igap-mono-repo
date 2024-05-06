@@ -31,11 +31,11 @@ public class SecurityConfiguration {
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         http.authorizeExchange()
-                .pathMatchers(HttpMethod.POST, "/profile/api/v1/auth/login").permitAll()
+                .pathMatchers(HttpMethod.POST, "/profile/api/v1/auth/login","/api/v1/person/otp/send").permitAll()
+                .pathMatchers(HttpMethod.PATCH,"/api/v1/person/otp/enable").permitAll()
+                .pathMatchers(HttpMethod.GET, "/actuator/prometheus","/actuator/health").permitAll()
                 .pathMatchers(HttpMethod.POST, "/profile/api/v1/person").hasRole(USER_ROLE)
-                .pathMatchers(HttpMethod.GET, "/profile/api/v1/person").hasRole(ADMIN_Role)
-                .pathMatchers(HttpMethod.GET, "/profile/api/v1/person/{id}").hasRole(ADMIN_Role)
-//                .pathMatchers(HttpMethod.GET, "/actuator/prometheus","/actuator/health").permitAll()
+                .pathMatchers(HttpMethod.GET, "/profile/api/v1/person","/profile/api/v1/person/{id}").hasRole(ADMIN_Role)
                 .anyExchange().authenticated()
                 .and()
                 .csrf().disable()

@@ -24,5 +24,7 @@ public class CreatePersonRequestDto extends RequestDto {
 
     private Long birthdate;
 
+    private String mobile;
+
     private CreateAddressRequestDto createAddressRequestDto;
 }

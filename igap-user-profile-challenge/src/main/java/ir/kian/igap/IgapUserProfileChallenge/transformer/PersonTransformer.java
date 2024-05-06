@@ -25,14 +25,16 @@ public class PersonTransformer {
                 .surname(person.getSurname())
                 .father(person.getFather())
                 .email(person.getEmail())
-                .mobile(person.getMobile() != null ? person.getMobile().getMobileNo() : null)
+                .mobile(person.getMobile())
                 .address(person.getAddress() != null ? person.getAddress().getLocation() : null)
                 .city(person.getAddress() != null ? person.getAddress().getCity() != null ? person.getAddress().getCity().getTitle() : null : null)
                 .province(person.getAddress() != null ?
                         person.getAddress().getCity() != null ?
                                 person.getAddress().getCity().getProvince() != null ?
                                         person.getAddress().getCity().getProvince().getTitle() : null : null : null)
-                .id(person.getId())
+                .username(person.getUsername())
+                .mobile(person.getMobile())
+                .isEnabled(person.isEnabled())
                 .build();
     }
 
@@ -44,6 +46,9 @@ public class PersonTransformer {
                 .birthdate(requestDto.getBirthdate())
                 .email(requestDto.getEmail())
                 .address(address)
+                .mobile(requestDto.getMobile())
+                .username(requestDto.getUsername())
+                .isEnabled(false)
                 .build();
     }
 
