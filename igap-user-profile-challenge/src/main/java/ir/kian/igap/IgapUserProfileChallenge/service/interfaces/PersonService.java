@@ -1,7 +1,10 @@
 package ir.kian.igap.IgapUserProfileChallenge.service.interfaces;
 
+import ir.kian.igap.IgapUserProfileChallenge.domain.dto.request.otp.OTPAnswerRequestDto;
+import ir.kian.igap.IgapUserProfileChallenge.domain.dto.request.otp.OTPRequestDto;
 import ir.kian.igap.IgapUserProfileChallenge.domain.dto.request.person.CreatePersonRequestDto;
 import ir.kian.igap.IgapUserProfileChallenge.domain.dto.request.person.PersonPageRequestDto;
+import ir.kian.igap.IgapUserProfileChallenge.domain.dto.response.otp.OTPResponseDto;
 import ir.kian.igap.IgapUserProfileChallenge.domain.dto.response.person.PersonIdResponseDto;
 import ir.kian.igap.IgapUserProfileChallenge.domain.dto.response.person.PersonResponseDto;
 import ir.kian.igap.IgapUserProfileChallenge.domain.entity.Person;
@@ -13,7 +16,7 @@ import java.util.UUID;
 public interface PersonService {
     PersonIdResponseDto createPerson(String username, CreatePersonRequestDto createPersonRequestDto);
 
-    PersonIdResponseDto enablePerson(String username, UUID personId);
+    PersonIdResponseDto enablePerson(OTPAnswerRequestDto requestDto);
 
     Person findPerson(UUID id);
 
@@ -22,6 +25,9 @@ public interface PersonService {
     PersonResponseDto getById(String username, UUID id);
 
     Pagination<List<PersonResponseDto>> getPersons(String username, PersonPageRequestDto requestDto);
+
+    OTPResponseDto sendOTP(OTPRequestDto requestDto);
+
 
 
 }

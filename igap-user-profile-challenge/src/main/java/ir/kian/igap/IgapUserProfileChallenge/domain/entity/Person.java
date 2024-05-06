@@ -41,8 +41,7 @@ public class Person extends BaseEntity<UUID> {
 
     private Long birthdate;
 
-    @OneToOne
-    private Mobile mobile;
+    private String mobile;
 
     private boolean isEnabled;
 }

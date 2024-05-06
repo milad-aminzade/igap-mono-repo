@@ -12,9 +12,9 @@ import java.util.UUID;
 
 public interface PersonRepository extends JpaRepository<Person, UUID>, JpaSpecificationExecutor<Person> {
     Optional<Person> findPersonByUsername(String username);
-
+    Optional<Person> findPersonByMobile(String mobile);
 
     @Modifying
-    @Query("update Person p set p.isEnabled=TRUE where p.id=:id")
-    void enablePerson(@Param("id") UUID id);
+    @Query("update Person p set p.isEnabled=TRUE where p.username=:username")
+    void enablePerson(@Param("username") String username);
 }

@@ -1,7 +1,10 @@
 package ir.kian.igap.IgapUserProfileChallenge.controller;
 
+import ir.kian.igap.IgapUserProfileChallenge.domain.dto.request.otp.OTPAnswerRequestDto;
+import ir.kian.igap.IgapUserProfileChallenge.domain.dto.request.otp.OTPRequestDto;
 import ir.kian.igap.IgapUserProfileChallenge.domain.dto.request.person.CreatePersonRequestDto;
 import ir.kian.igap.IgapUserProfileChallenge.domain.dto.request.person.PersonPageRequestDto;
+import ir.kian.igap.IgapUserProfileChallenge.domain.dto.response.otp.OTPResponseDto;
 import ir.kian.igap.IgapUserProfileChallenge.domain.dto.response.person.PersonIdResponseDto;
 import ir.kian.igap.IgapUserProfileChallenge.domain.dto.response.person.PersonResponseDto;
 import ir.kian.igap.IgapUserProfileChallenge.service.interfaces.PersonService;
@@ -29,6 +32,20 @@ public class PersonController {
                                                                                   @RequestBody CreatePersonRequestDto requestDto) {
         PersonIdResponseDto person = service.createPerson(username, requestDto);
         APIResultDtoWithData<PersonIdResponseDto> successResult = ResponseHandlerTransformer.getSuccessResult(person);
+        return ResponseHandlerTransformer.handleResponseWithBody(successResult);
+    }
+
+    @PostMapping("/otp/send")
+    public ResponseEntity<APIResultDtoWithData<OTPResponseDto>> sendOTP(@RequestBody OTPRequestDto requestDto) {
+        OTPResponseDto responseDto = service.sendOTP(requestDto);
+        APIResultDtoWithData<OTPResponseDto> successResult = ResponseHandlerTransformer.getSuccessResult(responseDto);
+        return ResponseHandlerTransformer.handleResponseWithBody(successResult);
+    }
+
+    @PatchMapping("/otp/enable")
+    public ResponseEntity<APIResultDtoWithData<PersonIdResponseDto>> enablePersonByOTP(@RequestBody OTPAnswerRequestDto requestDto) {
+        PersonIdResponseDto personIdResponseDto = service.enablePerson(requestDto);
+        APIResultDtoWithData<PersonIdResponseDto> successResult = ResponseHandlerTransformer.getSuccessResult(personIdResponseDto);
         return ResponseHandlerTransformer.handleResponseWithBody(successResult);
     }
 
