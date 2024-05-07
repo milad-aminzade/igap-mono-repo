@@ -9,6 +9,7 @@ import java.util.UUID;
 @Data
 @Entity
 @Builder
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
