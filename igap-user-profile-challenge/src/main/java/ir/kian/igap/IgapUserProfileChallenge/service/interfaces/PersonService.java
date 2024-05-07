@@ -18,6 +18,8 @@ public interface PersonService {
 
     PersonIdResponseDto enablePerson(OTPAnswerRequestDto requestDto);
 
+    PersonIdResponseDto deletePerson(String username, UUID id);
+
     Person findPerson(UUID id);
 
     Person findByUsername(String username);
