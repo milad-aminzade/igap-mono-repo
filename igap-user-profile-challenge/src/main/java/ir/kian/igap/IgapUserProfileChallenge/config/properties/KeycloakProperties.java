@@ -1,6 +1,8 @@
 package ir.kian.igap.IgapUserProfileChallenge.config.properties;
 
 import ir.kian.igap.common.config.properties.BaseProperties;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
