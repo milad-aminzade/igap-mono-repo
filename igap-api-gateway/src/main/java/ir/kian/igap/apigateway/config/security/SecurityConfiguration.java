@@ -36,6 +36,7 @@ public class SecurityConfiguration {
                 .pathMatchers(HttpMethod.GET, "/actuator/prometheus","/actuator/health").permitAll()
                 .pathMatchers(HttpMethod.POST, "/profile/api/v1/person").hasRole(USER_ROLE)
                 .pathMatchers(HttpMethod.GET, "/profile/api/v1/person","/profile/api/v1/person/{id}").hasRole(ADMIN_Role)
+                .pathMatchers(HttpMethod.DELETE,"/profile/api/v1/person/{id}").hasRole(ADMIN_Role)
                 .anyExchange().authenticated()
                 .and()
                 .csrf().disable()

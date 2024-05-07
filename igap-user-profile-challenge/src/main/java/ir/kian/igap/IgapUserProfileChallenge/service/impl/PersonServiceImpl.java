@@ -105,6 +105,15 @@ public class PersonServiceImpl implements PersonService {
         throw new InvalidOTPException();
     }
 
+    @Override
+    public PersonIdResponseDto deletePerson(String username, UUID id) {
+        Person person = repository.findPersonById(id)
+                .orElseThrow(PersonNotFoundException::new);
+        repository.disablePerson(person.getId());
+        return PersonTransformer.toPersonIdResponseDto(id);
+
+    }
+
     @Cacheable(value = "OTPCache", key = "#otpTrackingCode")
     public OTPObjectDto OTPCacheManager(String otpTrackingCode, String cellphone) {
         String answer = SequenceGeneratorUtils.generateAlphaNumerics(OTP_LENGTH);

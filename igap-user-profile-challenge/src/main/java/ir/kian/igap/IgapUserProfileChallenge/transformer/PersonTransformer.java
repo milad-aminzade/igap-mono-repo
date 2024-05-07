@@ -18,6 +18,12 @@ public class PersonTransformer {
                 .toList();
     }
 
+    public static PersonIdResponseDto toPersonIdResponseDto(UUID id) {
+        return PersonIdResponseDto.builder()
+                .id(id)
+                .build();
+    }
+
     public static PersonResponseDto toPersonResponseDto(Person person) {
         return PersonResponseDto.builder()
                 .id(person.getId())

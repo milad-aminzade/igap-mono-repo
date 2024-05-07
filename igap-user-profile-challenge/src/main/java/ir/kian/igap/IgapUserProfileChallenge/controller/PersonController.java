@@ -57,6 +57,14 @@ public class PersonController {
         return ResponseHandlerTransformer.handleResponseWithBody(successResult);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<APIResultDtoWithData<PersonIdResponseDto>> deleteById(@RequestHeader("username") String username,
+                                                                              @PathVariable("id") UUID id){
+        PersonIdResponseDto personIdResponseDto = service.deletePerson(username, id);
+        APIResultDtoWithData<PersonIdResponseDto> successResult = ResponseHandlerTransformer.getSuccessResult(personIdResponseDto);
+        return ResponseHandlerTransformer.handleResponseWithBody(successResult);
+    }
+
     @GetMapping
     public ResponseEntity<APIResultDtoWithData<List<PersonResponseDto>>> getPersons(@RequestHeader("username") String username,
                                                                                     PersonPageRequestDto requestDto) {
